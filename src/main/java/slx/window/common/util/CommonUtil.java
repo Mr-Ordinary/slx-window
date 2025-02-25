@@ -1,7 +1,7 @@
 package slx.window.common.util;
 
 /**
- * 佛那个聚类
+ * 通用工具类
  */
 public class CommonUtil {
     /**
