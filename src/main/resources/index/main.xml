@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<main title="window" width="600" height="400">
+    <variable name="tables" type="String[]" default="点击1,点击2,点击3"/>
+    <variable name="btnName" type="String" default="点击"/>
+    <lookAndFeel value="com.sun.java.swing.plaf.windows.WindowsLookAndFeel"/>
+    <button x="10" y="20" width="100" height="30" onClick="btnClick">{{btnName}}</button>
+    <button x="10" y="60" width="100" height="30" onClick="btnClick2">按钮2</button>
+    <btnClick>
+        <![CDATA[
+        System.out.println("Button clicked!");
+        main.$message("提示","点击了按钮", info);
+        ]]>
+    </btnClick>
+    <btnClick2>
+        <![CDATA[
+        main.$message("错误","点击了按钮2", error);
+        ]]>
+    </btnClick2>
+</main>
