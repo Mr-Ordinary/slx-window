@@ -3,6 +3,9 @@ package slx.window.model;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * 标签
+ */
 public class SlxLabel implements SlxComponent{
 
     public String content;
