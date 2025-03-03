@@ -2,6 +2,7 @@ package slx.window.main;
 
 import org.reflections.Reflections;
 import org.reflections.scanners.Scanners;
+import org.reflections.util.ClasspathHelper;
 import org.reflections.util.ConfigurationBuilder;
 import slx.window.annotation.db.DBConnect;
 import slx.window.annotation.field.Assemble;
@@ -35,7 +36,7 @@ public class SlxWindowStarter {
     private static Class<?> getMainClass(){
         //找到主类
         Reflections configReflections = new Reflections(new ConfigurationBuilder()
-                .forPackage("") // 根包名
+                .setUrls(ClasspathHelper.forJavaClassPath())
                 .addScanners(Scanners.TypesAnnotated)
         );
         Set<Class<?>> mainClasses = configReflections.getTypesAnnotatedWith(SlxWindowMain.class);
@@ -90,6 +91,10 @@ public class SlxWindowStarter {
         elementClasses.addAll(getSlxElementClasses);
         for (Class<?> elementClass : elementClasses) {
             // 创建对象至容器
+            if (elementClass.isAnnotation()) {
+                // 跳过注解类
+                continue;
+            }
             Object obj = elementClass.newInstance();
             SlxContext.addElement(elementClass,obj);
         }
